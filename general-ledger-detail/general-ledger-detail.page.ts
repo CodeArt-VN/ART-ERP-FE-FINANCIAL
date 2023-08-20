@@ -4,7 +4,7 @@ import { PageBase } from 'src/app/page-base';
 import { ActivatedRoute } from '@angular/router';
 import { EnvService } from 'src/app/services/core/env.service';
 import { FINANCE_GeneralLedgerProvider } from 'src/app/services/static/services.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { lib } from 'src/app/services/static/global-functions';
 
 
@@ -56,7 +56,7 @@ export class GeneralLedgerDetailPage extends PageBase {
             Level: [''],
             Counter: [''],
             Sort: [''],
-            IsDisabled: [''],
+            IsDisabled: new FormControl({ value: '', disabled: true }),
             
         });
     }
