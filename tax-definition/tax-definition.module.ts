@@ -12,8 +12,8 @@ import { ShareModule } from 'src/app/share.module';
     CommonModule,
     FormsModule,
     ShareModule,
-    RouterModule.forChild([{ path: '', component: TaxDefinitionPage }])
+    RouterModule.forChild([{ path: '', component: TaxDefinitionPage }]),
   ],
-  declarations: [TaxDefinitionPage]
+  declarations: [TaxDefinitionPage],
 })
 export class TaxDefinitionPageModule {}

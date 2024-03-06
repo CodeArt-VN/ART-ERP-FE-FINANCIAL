@@ -10,7 +10,7 @@ describe('GeneralLedgerPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [GeneralLedgerPage],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GeneralLedgerPage);

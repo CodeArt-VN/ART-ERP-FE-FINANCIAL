@@ -14,8 +14,8 @@ import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
     FormsModule,
     NgOptionHighlightModule,
     ShareModule,
-    RouterModule.forChild([{ path: '', component: GeneralLedgerPage }])
+    RouterModule.forChild([{ path: '', component: GeneralLedgerPage }]),
   ],
-  declarations: [GeneralLedgerPage]
+  declarations: [GeneralLedgerPage],
 })
 export class GeneralLedgerPageModule {}
