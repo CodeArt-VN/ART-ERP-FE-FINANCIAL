@@ -32,7 +32,7 @@ export class GeneralLedgerDetailPage extends PageBase {
     this.pageConfig.isDetailPage = true;
     this.id = this.route.snapshot.paramMap.get('id');
     this.formGroup = formBuilder.group({
-      IDBranch: [this.env.selectedBranch],
+      IDBranch: new FormControl({ value: null, disabled: false }),
       IDParent: [''],
       RefParentCode: [''],
       Id: [''],
