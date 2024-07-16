@@ -8,4 +8,5 @@ export const FINANCIALRoutes: Routes = [
     { path: 'tax-definition', loadChildren: () => import('./tax-definition/tax-definition.module').then(m => m.TaxDefinitionPageModule), canActivate: [AuthGuard] },
     { path: 'tax-definition/:id', loadChildren: () => import('./tax-definition-detail/tax-definition-detail.module').then(m => m.TaxDefinitionDetailPageModule), canActivate: [AuthGuard] },
   
+    { path: 'posting-period', loadChildren: () => import('./posting-period/posting-period.module').then(m => m.PostingPeriodPageModule), canActivate: [AuthGuard] },
 ];
