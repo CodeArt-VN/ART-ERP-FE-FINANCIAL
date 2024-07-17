@@ -47,7 +47,7 @@ export class PostingPeriodPage extends PageBase {
     const modal = await this.modalController.create({
       component: PostingPeriodCategoryModalPage,
       componentProps: {},
-      cssClass: 'modal90',
+      cssClass: 'my-custom-class',
     });
 
     await modal.present();
