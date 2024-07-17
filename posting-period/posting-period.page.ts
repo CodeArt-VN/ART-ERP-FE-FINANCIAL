@@ -36,6 +36,7 @@ export class PostingPeriodPage extends PageBase {
   }
 
   preLoadData(event) {
+    this.sort.Id = 'Id';
     this.sortToggle('Id', true);
     super.preLoadData(event);
   }
