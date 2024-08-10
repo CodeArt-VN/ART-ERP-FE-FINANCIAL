@@ -75,13 +75,13 @@ export class PostingPeriodPage extends PageBase {
         .connect('PUT', 'AC/PostingPeriod/ChangeStatus/', obj)
         .toPromise()
         .then((result: any) => {
-          this.env.showTranslateMessage('Saved', 'success');
+          this.env.showMessage('Saved', 'success');
           this.isPopoverStatusOpen = false;
           this.refresh();
           this.submitAttempt = false;
         })
         .catch((err) => {
-          this.env.showTranslateMessage('Cannot save, please try again', 'danger');
+          this.env.showMessage('Cannot save, please try again', 'danger');
           this.submitAttempt = false;
         });
     }

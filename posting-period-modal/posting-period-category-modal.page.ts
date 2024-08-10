@@ -162,7 +162,7 @@ export class PostingPeriodCategoryModalPage extends PageBase {
     return new Promise((resolve, reject) => {
       this.formGroup.updateValueAndValidity();
       if (!form.valid) {
-        this.env.showTranslateMessage('Please recheck information highlighted in red above', 'warning');
+        this.env.showMessage('Please recheck information highlighted in red above', 'warning');
       } else if (this.submitAttempt == false) {
         this.submitAttempt = true;
         let submitItem = this.getDirtyValues(form);
@@ -177,9 +177,9 @@ export class PostingPeriodCategoryModalPage extends PageBase {
           })
           .catch((err) => {
             if(err.error?.InnerException?.ExceptionMessage) {
-              this.env.showTranslateMessage(err.error.InnerException.ExceptionMessage, 'danger');
+              this.env.showMessage(err.error.InnerException.ExceptionMessage, 'danger');
             }else {
-              this.env.showTranslateMessage('Cannot save, please try again', 'danger');
+              this.env.showMessage('Cannot save, please try again', 'danger');
             }
             //this.env.showTranslateMessage('Cannot save, please try again', 'danger');
             this.cdr.detectChanges();
