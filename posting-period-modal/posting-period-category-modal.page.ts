@@ -7,9 +7,10 @@ import { EnvService } from 'src/app/services/core/env.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AC_PeriodCategoryProvider } from 'src/app/services/static/services.service';
 @Component({
-  selector: 'app-posting-period-category-modal',
-  templateUrl: './posting-period-category-modal.page.html',
-  styleUrls: ['./posting-period-category-modal.page.scss'],
+    selector: 'app-posting-period-category-modal',
+    templateUrl: './posting-period-category-modal.page.html',
+    styleUrls: ['./posting-period-category-modal.page.scss'],
+    standalone: false
 })
 export class PostingPeriodCategoryModalPage extends PageBase {
   financialYearList: { Code: number; Name: number }[] = [];

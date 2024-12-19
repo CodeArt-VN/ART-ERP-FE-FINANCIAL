@@ -8,9 +8,10 @@ import { Location } from '@angular/common';
 import { PostingPeriodCategoryModalPage } from '../posting-period-modal/posting-period-category-modal.page';
 
 @Component({
-  selector: 'app-posting-period',
-  templateUrl: 'posting-period.page.html',
-  styleUrls: ['posting-period.page.scss'],
+    selector: 'app-posting-period',
+    templateUrl: 'posting-period.page.html',
+    styleUrls: ['posting-period.page.scss'],
+    standalone: false
 })
 export class PostingPeriodPage extends PageBase {
   @ViewChild('popoverStatus') popoverStatus;

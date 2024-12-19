@@ -9,9 +9,10 @@ import { CommonService } from 'src/app/services/core/common.service';
 import { lib } from 'src/app/services/static/global-functions';
 
 @Component({
-  selector: 'app-tax-definition-detail',
-  templateUrl: './tax-definition-detail.page.html',
-  styleUrls: ['./tax-definition-detail.page.scss'],
+    selector: 'app-tax-definition-detail',
+    templateUrl: './tax-definition-detail.page.html',
+    styleUrls: ['./tax-definition-detail.page.scss'],
+    standalone: false
 })
 export class TaxDefinitionDetailPage extends PageBase {
   typeList = [];

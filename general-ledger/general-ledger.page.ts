@@ -7,9 +7,10 @@ import { FINANCE_GeneralLedgerProvider } from 'src/app/services/static/services.
 import { GeneralLedgerDetailPage } from '../general-ledger-detail/general-ledger-detail.page';
 
 @Component({
-  selector: 'app-general-ledger',
-  templateUrl: 'general-ledger.page.html',
-  styleUrls: ['general-ledger.page.scss'],
+    selector: 'app-general-ledger',
+    templateUrl: 'general-ledger.page.html',
+    styleUrls: ['general-ledger.page.scss'],
+    standalone: false
 })
 export class GeneralLedgerPage extends PageBase {
   itemsState: any = [];

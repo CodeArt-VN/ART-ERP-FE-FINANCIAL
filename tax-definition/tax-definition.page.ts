@@ -6,9 +6,10 @@ import { FINANCE_TaxDefinitionProvider } from 'src/app/services/static/services.
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-tax-definition',
-  templateUrl: 'tax-definition.page.html',
-  styleUrls: ['tax-definition.page.scss'],
+    selector: 'app-tax-definition',
+    templateUrl: 'tax-definition.page.html',
+    styleUrls: ['tax-definition.page.scss'],
+    standalone: false
 })
 export class TaxDefinitionPage extends PageBase {
   constructor(

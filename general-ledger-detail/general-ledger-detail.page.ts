@@ -8,9 +8,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { lib } from 'src/app/services/static/global-functions';
 
 @Component({
-  selector: 'app-general-ledger-detail',
-  templateUrl: './general-ledger-detail.page.html',
-  styleUrls: ['./general-ledger-detail.page.scss'],
+    selector: 'app-general-ledger-detail',
+    templateUrl: './general-ledger-detail.page.html',
+    styleUrls: ['./general-ledger-detail.page.scss'],
+    standalone: false
 })
 export class GeneralLedgerDetailPage extends PageBase {
   formGroup: FormGroup;
