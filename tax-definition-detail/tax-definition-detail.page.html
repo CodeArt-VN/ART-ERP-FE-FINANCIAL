@@ -1,240 +1,228 @@
 <ion-header>
-  <app-detail-toolbar [page]="this"></app-detail-toolbar>
+	<app-detail-toolbar [page]="this"></app-detail-toolbar>
 </ion-header>
 
 <ion-content appScrollbarTheme class="ion-padding">
-  <div class="main-view" *ngIf="item && pageConfig.showSpinner==false">
-    <div class="row-full shadow full-screen">
-      <div class="ion-padding">
-        <ion-grid fixed>
-          <form [formGroup]="formGroup">
-            <ion-row class="hr-group">
-              <ion-col size="12" size-sm="12" size-md="12" size-xl="3">
-                <ion-list-header class="ion-no-padding">
-                  <ion-label color="primary">{{'General information' | translate}}</ion-label>
-                </ion-list-header>
-              </ion-col>
-              <ion-col size="12" size-sm size-xl="4">
-                <div class="c-control">
-                  <label class="c-label" for="Code"
-                    >{{'Id' | translate}}
-                    <small *ngIf="item.Id">Id: {{item.Id}}</small>
-                    <span
-                      *ngIf="!formGroup.controls.Code.valid && !formGroup.controls.Code.pending && (formGroup.controls.Code.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                  <input (change)="saveChange()" class="c-input" id="Code" formControlName="Code" type="text" />
-                </div>
-                <div class="c-control">
-                  <label class="c-label" for="Name"
-                    >{{'Name' | translate}}
-                    <span
-                      *ngIf="!formGroup.controls.Name.valid && !formGroup.controls.Name.pending && (formGroup.controls.Name.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                  <input class="c-input" id="Name" (change)="saveChange();" formControlName="Name" type="text" />
-                </div>
-                <div class="c-control">
-                  <label class="c-label" for="Category"
-                    >{{'Category' | translate}}
-                    <span
-                      *ngIf="!formGroup.controls.Category.valid && !formGroup.controls.Category.pending && (formGroup.controls.Category.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                  <select (change)="saveChange()" class="c-input c-dropdown" formControlName="Category">
-                    <option *ngFor="let t of typeList" [value]="t.Code">{{t.Name}}</option>
-                  </select>
-                </div>
-                <div class="c-control">
-                  <label class="c-label" for="Rate"
-                    >{{'Rate' | translate}} (%)
-                    <span
-                      *ngIf="!formGroup.controls.Rate.valid && !formGroup.controls.Rate.pending && (formGroup.controls.Rate.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                  <input (change)="saveChange()" class="c-input" id="Rate" formControlName="Rate" type="number" />
-                </div>
-              </ion-col>
-              <ion-col size="12" size-sm size-xl="4">
-                <div class="c-control">
-                  <label class="c-label" for="TaxAccount">{{'TaxAccount' | translate}}</label>
-                  <ng-select
-                    class="c-input"
-                    (change)="saveChange();"
-                    labelForId="TaxAccount"
-                    formControlName="TaxAccount"
-                    [items]="accountList"
-                    [virtualScroll]="true"
-                    bindLabel="Name"
-                    bindValue="Code"
-                    placeholder="{{'Select account' | translate}}"
-                  >
-                    <ng-template ng-option-tmp let-i="item" let-search="searchTerm">
-                      <div *ngIf="i">
-                        <div>
-                          <span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
-                          <span [ngOptionHighlight]="search">{{i.Name}}</span>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </ng-select>
-                </div>
+	<div class="main-view" *ngIf="item && pageConfig.showSpinner==false">
+		<div class="row-full shadow full-screen">
+			<div class="ion-padding">
+				<ion-grid fixed>
+					<form [formGroup]="formGroup">
+						<ion-row class="hr-group">
+							<ion-col size="12" size-sm="12" size-md="12" size-xl="3">
+								<ion-list-header class="ion-no-padding">
+									<ion-label color="primary">{{'General information' | translate}}</ion-label>
+								</ion-list-header>
+							</ion-col>
+							<ion-col size="12" size-sm size-xl="4">
+								<div class="c-control">
+									<label class="c-label" for="Code"
+										>{{'Id' | translate}}
+										<small *ngIf="item.Id">Id: {{item.Id}}</small>
+										<span
+											*ngIf="!formGroup.controls.Code.valid && !formGroup.controls.Code.pending && (formGroup.controls.Code.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+									<input (change)="saveChange()" class="c-input" id="Code" formControlName="Code" type="text" />
+								</div>
+								<div class="c-control">
+									<label class="c-label" for="Name"
+										>{{'Name' | translate}}
+										<span
+											*ngIf="!formGroup.controls.Name.valid && !formGroup.controls.Name.pending && (formGroup.controls.Name.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+									<input class="c-input" id="Name" (change)="saveChange();" formControlName="Name" type="text" />
+								</div>
+								<div class="c-control">
+									<label class="c-label" for="Category"
+										>{{'Category' | translate}}
+										<span
+											*ngIf="!formGroup.controls.Category.valid && !formGroup.controls.Category.pending && (formGroup.controls.Category.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+									<select (change)="saveChange()" class="c-input c-dropdown" formControlName="Category">
+										<option *ngFor="let t of typeList" [value]="t.Code">{{t.Name}}</option>
+									</select>
+								</div>
+								<div class="c-control">
+									<label class="c-label" for="Rate"
+										>{{'Rate' | translate}} (%)
+										<span
+											*ngIf="!formGroup.controls.Rate.valid && !formGroup.controls.Rate.pending && (formGroup.controls.Rate.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+									<input (change)="saveChange()" class="c-input" id="Rate" formControlName="Rate" type="number" />
+								</div>
+							</ion-col>
+							<ion-col size="12" size-sm size-xl="4">
+								<div class="c-control">
+									<label class="c-label" for="TaxAccount">{{'TaxAccount' | translate}}</label>
+									<ng-select
+										class="c-input"
+										(change)="saveChange();"
+										labelForId="TaxAccount"
+										formControlName="TaxAccount"
+										[items]="accountList"
+										[virtualScroll]="true"
+										bindLabel="Name"
+										bindValue="Code"
+										placeholder="{{'Select account' | translate}}"
+									>
+										<ng-template ng-option-tmp let-i="item" let-search="searchTerm">
+											<div *ngIf="i">
+												<div>
+													<span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
+													<span [ngOptionHighlight]="search">{{i.Name}}</span>
+												</div>
+											</div>
+										</ng-template>
+									</ng-select>
+								</div>
 
-                <div class="c-control">
-                  <label class="c-label" for="DeferredTaxAccount">{{'Deferred Tax Account' | translate}}</label>
-                  <ng-select
-                    class="c-input"
-                    (change)="saveChange();"
-                    labelForId="DeferredTaxAccount"
-                    formControlName="DeferredTaxAccount"
-                    [items]="accountList"
-                    [virtualScroll]="true"
-                    bindLabel="Name"
-                    bindValue="Code"
-                    placeholder="{{'Select account' | translate}}"
-                  >
-                    <ng-template ng-option-tmp let-i="item" let-search="searchTerm">
-                      <div *ngIf="i">
-                        <div>
-                          <span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
-                          <span [ngOptionHighlight]="search">{{i.Name}}</span>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </ng-select>
-                </div>
+								<div class="c-control">
+									<label class="c-label" for="DeferredTaxAccount">{{'Deferred Tax Account' | translate}}</label>
+									<ng-select
+										class="c-input"
+										(change)="saveChange();"
+										labelForId="DeferredTaxAccount"
+										formControlName="DeferredTaxAccount"
+										[items]="accountList"
+										[virtualScroll]="true"
+										bindLabel="Name"
+										bindValue="Code"
+										placeholder="{{'Select account' | translate}}"
+									>
+										<ng-template ng-option-tmp let-i="item" let-search="searchTerm">
+											<div *ngIf="i">
+												<div>
+													<span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
+													<span [ngOptionHighlight]="search">{{i.Name}}</span>
+												</div>
+											</div>
+										</ng-template>
+									</ng-select>
+								</div>
 
-                <div class="c-control">
-                  <label class="c-label" for="Remark"
-                    >{{'Description' | translate}}
-                    <span
-                      *ngIf="!formGroup.controls.Remark.valid && !formGroup.controls.Remark.pending && (formGroup.controls.Remark.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                  <textarea
-                    rows="3"
-                    class="c-input remark"
-                    id="Remark"
-                    formControlName="Remark"
-                    type="textarea"
-                  ></textarea>
-                </div>
-              </ion-col>
-            </ion-row>
+								<div class="c-control">
+									<label class="c-label" for="Remark"
+										>{{'Description' | translate}}
+										<span
+											*ngIf="!formGroup.controls.Remark.valid && !formGroup.controls.Remark.pending && (formGroup.controls.Remark.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+									<textarea rows="3" class="c-input remark" id="Remark" formControlName="Remark" type="textarea"></textarea>
+								</div>
+							</ion-col>
+						</ion-row>
 
-            <ion-row class="hr-group" *ngIf="formGroup.controls.Category.value == 'InputTax'">
-              <ion-col size="12" size-sm="12" size-md="12" size-xl="3">
-                <ion-list-header class="ion-no-padding">
-                  <ion-label color="primary">{{'Deduct' | translate}}</ion-label>
-                </ion-list-header>
-              </ion-col>
-              <ion-col size="12" size-sm size-xl="4">
-                <div class="c-control">
-                  <label class="c-label" for="NonDeduct"
-                    >{{'Non-Deduct' | translate}} (%)
-                    <span
-                      *ngIf="!formGroup.controls.NonDeduct.valid && !formGroup.controls.NonDeduct.pending && (formGroup.controls.NonDeduct.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                  <input
-                    (change)="saveChange()"
-                    class="c-input"
-                    id="NonDeduct"
-                    formControlName="NonDeduct"
-                    type="number"
-                  />
-                </div>
-                <div class="c-control">
-                  <label class="c-label" for="NonDeductAccount">{{'Non Deduct. Acct' | translate}}</label>
-                  <ng-select
-                    class="c-input"
-                    (change)="saveChange();"
-                    labelForId="NonDeductAccount"
-                    formControlName="NonDeductAccount"
-                    [items]="accountList"
-                    [virtualScroll]="true"
-                    bindLabel="Name"
-                    bindValue="Code"
-                    placeholder="{{'Select account' | translate}}"
-                  >
-                    <ng-template ng-option-tmp let-i="item" let-search="searchTerm">
-                      <div *ngIf="i">
-                        <div>
-                          <span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
-                          <span [ngOptionHighlight]="search">{{i.Name}}</span>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </ng-select>
-                </div>
-                <div class="c-control">
-                  <label class="c-label" for="AcquisitionTaxAccount">{{'Acquisition Tax Account' | translate}}</label>
-                  <ng-select
-                    class="c-input"
-                    (change)="saveChange();"
-                    labelForId="AcquisitionTaxAccount"
-                    formControlName="AcquisitionTaxAccount"
-                    [items]="accountList"
-                    [virtualScroll]="true"
-                    bindLabel="Name"
-                    bindValue="Code"
-                    placeholder="{{'Select account' | translate}}"
-                  >
-                    <ng-template ng-option-tmp let-i="item" let-search="searchTerm">
-                      <div *ngIf="i">
-                        <div>
-                          <span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
-                          <span [ngOptionHighlight]="search">{{i.Name}}</span>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </ng-select>
-                </div>
+						<ion-row class="hr-group" *ngIf="formGroup.controls.Category.value == 'InputTax'">
+							<ion-col size="12" size-sm="12" size-md="12" size-xl="3">
+								<ion-list-header class="ion-no-padding">
+									<ion-label color="primary">{{'Deduct' | translate}}</ion-label>
+								</ion-list-header>
+							</ion-col>
+							<ion-col size="12" size-sm size-xl="4">
+								<div class="c-control">
+									<label class="c-label" for="NonDeduct"
+										>{{'Non-Deduct' | translate}} (%)
+										<span
+											*ngIf="!formGroup.controls.NonDeduct.valid && !formGroup.controls.NonDeduct.pending && (formGroup.controls.NonDeduct.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+									<input (change)="saveChange()" class="c-input" id="NonDeduct" formControlName="NonDeduct" type="number" />
+								</div>
+								<div class="c-control">
+									<label class="c-label" for="NonDeductAccount">{{'Non Deduct. Acct' | translate}}</label>
+									<ng-select
+										class="c-input"
+										(change)="saveChange();"
+										labelForId="NonDeductAccount"
+										formControlName="NonDeductAccount"
+										[items]="accountList"
+										[virtualScroll]="true"
+										bindLabel="Name"
+										bindValue="Code"
+										placeholder="{{'Select account' | translate}}"
+									>
+										<ng-template ng-option-tmp let-i="item" let-search="searchTerm">
+											<div *ngIf="i">
+												<div>
+													<span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
+													<span [ngOptionHighlight]="search">{{i.Name}}</span>
+												</div>
+											</div>
+										</ng-template>
+									</ng-select>
+								</div>
+								<div class="c-control">
+									<label class="c-label" for="AcquisitionTaxAccount">{{'Acquisition Tax Account' | translate}}</label>
+									<ng-select
+										class="c-input"
+										(change)="saveChange();"
+										labelForId="AcquisitionTaxAccount"
+										formControlName="AcquisitionTaxAccount"
+										[items]="accountList"
+										[virtualScroll]="true"
+										bindLabel="Name"
+										bindValue="Code"
+										placeholder="{{'Select account' | translate}}"
+									>
+										<ng-template ng-option-tmp let-i="item" let-search="searchTerm">
+											<div *ngIf="i">
+												<div>
+													<span *ngFor="let l of i.levels">&nbsp;&nbsp;&nbsp;</span>
+													<span [ngOptionHighlight]="search">{{i.Name}}</span>
+												</div>
+											</div>
+										</ng-template>
+									</ng-select>
+								</div>
 
-                <div class="c-control" *ngIf="formGroup.controls.Category.value == 'InputTax'">
-                  <input
-                    [readonly]="!(pageConfig.canEdit || pageConfig.canAdd)"
-                    (change)="saveChange()"
-                    class="c-checkbox"
-                    id="AcquisitionReverse"
-                    formControlName="AcquisitionReverse"
-                    type="checkbox"
-                  />
-                  <label class="c-label checkbox" for="AcquisitionReverse"
-                    >{{'Acquisition / Reverse' | translate}}
-                    <span
-                      *ngIf="!formGroup.controls.AcquisitionReverse.valid && !formGroup.controls.AcquisitionReverse.pending && (formGroup.controls.AcquisitionReverse.dirty || submitAttempt)"
-                      ion-text
-                      color="danger"
-                      >(*)</span
-                    >
-                  </label>
-                </div>
-              </ion-col>
-              <ion-col size="12" size-sm size-xl="4"> </ion-col>
-            </ion-row>
-          </form>
-        </ion-grid>
-      </div>
-    </div>
-  </div>
-  <app-page-message [itemsLength]="item? 1: 0" [showSpinner]="pageConfig.showSpinner"></app-page-message>
+								<div class="c-control" *ngIf="formGroup.controls.Category.value == 'InputTax'">
+									<input
+										[readonly]="!(pageConfig.canEdit || pageConfig.canAdd)"
+										(change)="saveChange()"
+										class="c-checkbox"
+										id="AcquisitionReverse"
+										formControlName="AcquisitionReverse"
+										type="checkbox"
+									/>
+									<label class="c-label checkbox" for="AcquisitionReverse"
+										>{{'Acquisition / Reverse' | translate}}
+										<span
+											*ngIf="!formGroup.controls.AcquisitionReverse.valid && !formGroup.controls.AcquisitionReverse.pending && (formGroup.controls.AcquisitionReverse.dirty || submitAttempt)"
+											ion-text
+											color="danger"
+											>(*)</span
+										>
+									</label>
+								</div>
+							</ion-col>
+							<ion-col size="12" size-sm size-xl="4"> </ion-col>
+						</ion-row>
+					</form>
+				</ion-grid>
+			</div>
+		</div>
+	</div>
+	<app-page-message [itemsLength]="item? 1: 0" [showSpinner]="pageConfig.showSpinner"></app-page-message>
 </ion-content>

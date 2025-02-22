@@ -7,13 +7,7 @@ import { TaxDefinitionPage } from './tax-definition.page';
 import { ShareModule } from 'src/app/share.module';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ShareModule,
-    RouterModule.forChild([{ path: '', component: TaxDefinitionPage }]),
-  ],
-  declarations: [TaxDefinitionPage],
+	imports: [IonicModule, CommonModule, FormsModule, ShareModule, RouterModule.forChild([{ path: '', component: TaxDefinitionPage }])],
+	declarations: [TaxDefinitionPage],
 })
 export class TaxDefinitionPageModule {}

@@ -8,14 +8,7 @@ import { ShareModule } from 'src/app/share.module';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    NgOptionHighlightModule,
-    ShareModule,
-    RouterModule.forChild([{ path: '', component: GeneralLedgerPage }]),
-  ],
-  declarations: [GeneralLedgerPage],
+	imports: [IonicModule, CommonModule, FormsModule, NgOptionHighlightModule, ShareModule, RouterModule.forChild([{ path: '', component: GeneralLedgerPage }])],
+	declarations: [GeneralLedgerPage],
 })
 export class GeneralLedgerPageModule {}

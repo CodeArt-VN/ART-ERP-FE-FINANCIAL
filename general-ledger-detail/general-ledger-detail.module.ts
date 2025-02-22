@@ -7,22 +7,14 @@ import { GeneralLedgerDetailPage } from './general-ledger-detail.page';
 import { ShareModule } from 'src/app/share.module';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: GeneralLedgerDetailPage,
-  },
+	{
+		path: '',
+		component: GeneralLedgerDetailPage,
+	},
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ShareModule,
-    IonicModule,
-    ReactiveFormsModule,
-    ShareModule,
-    RouterModule.forChild(routes),
-  ],
-  declarations: [GeneralLedgerDetailPage],
+	imports: [CommonModule, FormsModule, ShareModule, IonicModule, ReactiveFormsModule, ShareModule, RouterModule.forChild(routes)],
+	declarations: [GeneralLedgerDetailPage],
 })
 export class GeneralLedgerDetailPageModule {}

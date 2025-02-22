@@ -8,83 +8,83 @@ import { Location } from '@angular/common';
 import { PostingPeriodCategoryModalPage } from '../posting-period-modal/posting-period-category-modal.page';
 
 @Component({
-    selector: 'app-posting-period',
-    templateUrl: 'posting-period.page.html',
-    styleUrls: ['posting-period.page.scss'],
-    standalone: false
+	selector: 'app-posting-period',
+	templateUrl: 'posting-period.page.html',
+	styleUrls: ['posting-period.page.scss'],
+	standalone: false,
 })
 export class PostingPeriodPage extends PageBase {
-  @ViewChild('popoverStatus') popoverStatus;
-  statusSelected;
-  statusLists = [
-    { Code: 'Open', Name: 'Open' },
-    { Code: 'Locked', Name: 'Locked Sales' },
-    { Code: 'Done', Name: 'Done' },
-    { Code: 'Closed', Name: 'Closed' },
-  ];
-  constructor(
-    public pageProvider: AC_PostingPeriodProvider,
-    public branchProvider: BRA_BranchProvider,
-    public modalController: ModalController,
-    public popoverCtrl: PopoverController,
-    public alertCtrl: AlertController,
-    public loadingController: LoadingController,
-    public env: EnvService,
-    public navCtrl: NavController,
-    public location: Location,
-  ) {
-    super();
-  }
+	@ViewChild('popoverStatus') popoverStatus;
+	statusSelected;
+	statusLists = [
+		{ Code: 'Open', Name: 'Open' },
+		{ Code: 'Locked', Name: 'Locked Sales' },
+		{ Code: 'Done', Name: 'Done' },
+		{ Code: 'Closed', Name: 'Closed' },
+	];
+	constructor(
+		public pageProvider: AC_PostingPeriodProvider,
+		public branchProvider: BRA_BranchProvider,
+		public modalController: ModalController,
+		public popoverCtrl: PopoverController,
+		public alertCtrl: AlertController,
+		public loadingController: LoadingController,
+		public env: EnvService,
+		public navCtrl: NavController,
+		public location: Location
+	) {
+		super();
+	}
 
-  preLoadData(event) {
-    this.sort.Id = 'Id';
-    this.sortToggle('Id', true);
-    super.preLoadData(event);
-  }
-  add() {
-    this.openTransaction();
-  }
-  async openTransaction() {
-    const modal = await this.modalController.create({
-      component: PostingPeriodCategoryModalPage,
-      componentProps: {},
-      cssClass: 'my-custom-class',
-    });
+	preLoadData(event) {
+		this.sort.Id = 'Id';
+		this.sortToggle('Id', true);
+		super.preLoadData(event);
+	}
+	add() {
+		this.openTransaction();
+	}
+	async openTransaction() {
+		const modal = await this.modalController.create({
+			component: PostingPeriodCategoryModalPage,
+			componentProps: {},
+			cssClass: 'my-custom-class',
+		});
 
-    await modal.present();
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      this.refresh();
-    }
-  }
+		await modal.present();
+		const { data } = await modal.onWillDismiss();
+		if (data) {
+			this.refresh();
+		}
+	}
 
-  isPopoverStatusOpen = false;
-  presentPopoverStatus(e: Event) {
-    this.statusSelected = null;
-    this.popoverStatus.event = e;
-    this.isPopoverStatusOpen = true;
-  }
+	isPopoverStatusOpen = false;
+	presentPopoverStatus(e: Event) {
+		this.statusSelected = null;
+		this.popoverStatus.event = e;
+		this.isPopoverStatusOpen = true;
+	}
 
-  onStatusChange(status) {
-    if (this.submitAttempt == false && status != null) {
-      this.submitAttempt = true;
-      let obj = {
-        Ids: this.selectedItems.map((m) => m.Id),
-        Status: status.Code,
-      };
-      this.pageProvider.commonService
-        .connect('PUT', 'AC/PostingPeriod/ChangeStatus/', obj)
-        .toPromise()
-        .then((result: any) => {
-          this.env.showMessage('Saved', 'success');
-          this.isPopoverStatusOpen = false;
-          this.refresh();
-          this.submitAttempt = false;
-        })
-        .catch((err) => {
-          this.env.showMessage('Cannot save, please try again', 'danger');
-          this.submitAttempt = false;
-        });
-    }
-  }
+	onStatusChange(status) {
+		if (this.submitAttempt == false && status != null) {
+			this.submitAttempt = true;
+			let obj = {
+				Ids: this.selectedItems.map((m) => m.Id),
+				Status: status.Code,
+			};
+			this.pageProvider.commonService
+				.connect('PUT', 'AC/PostingPeriod/ChangeStatus/', obj)
+				.toPromise()
+				.then((result: any) => {
+					this.env.showMessage('Saved', 'success');
+					this.isPopoverStatusOpen = false;
+					this.refresh();
+					this.submitAttempt = false;
+				})
+				.catch((err) => {
+					this.env.showMessage('Cannot save, please try again', 'danger');
+					this.submitAttempt = false;
+				});
+		}
+	}
 }
