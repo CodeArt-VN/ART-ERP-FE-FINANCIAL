@@ -11,16 +11,26 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content appScrollbarTheme class="ion-padding" fullscreen>
+
 	<form [formGroup]="formGroup">
 		<ion-grid fixed>
 			<ion-row>
 				<ion-col>
-					<div class="c-control">
+					<app-form-control
+						[field]="{branchConfig:{showingType:'Company',selectedBranch:selectedCompanyBranch},
+					id:'IDBranch',label:'Company',type:'ng-select-branch',
+					dataSource:branchList,bindLabel:'Name',bindValue:'Id', placeholder:'Search',
+					form:formGroup}"
+							></app-form-control>
+					<app-form-control (change)="changeFinancialYear()"
+					 [field]="{id:'FinancialYear', label: 'Fiscal year', type : 'ng-select',bindValue:'Code',bindLabel:'Name',dataSource:financialYearList, form : formGroup }"> </app-form-control>
+
+					<!-- <div class="c-control">
 						<label class="c-label"> {{'Fiscal year' | translate}} </label>
 						<select class="c-input c-dropdown" formControlName="FinancialYear" (change)="changeFinancialYear()">
 							<option *ngFor="let t of financialYearList" [value]="t.Code">{{t.Name}}</option>
 						</select>
-					</div>
+					</div> -->
 					<div class="c-control">
 						<label class="c-label"> {{'Start of Fiscal Year' | translate}} </label>
 						<input

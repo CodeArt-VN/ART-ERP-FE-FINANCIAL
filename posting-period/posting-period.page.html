@@ -14,6 +14,8 @@
 	<ion-fab *ngIf="pageConfig.isShowFeature" class="feature" vertical="top" horizontal="end" slot="fixed">
 		<div class="ion-padding"></div>
 	</ion-fab>
+	<app-page-title class="ion-padding safe-max-width" [pageConfig]="pageConfig"></app-page-title>
+
 	<app-data-table
 		class="box-shadow responsive"
 		[rows]="items"
