@@ -13,6 +13,7 @@ import { AC_PeriodCategoryProvider } from 'src/app/services/static/services.serv
 	standalone: false,
 })
 export class PostingPeriodCategoryModalPage extends PageBase {
+	branchList = [];
 	financialYearList: { Code: number; Name: number }[] = [];
 	periodTypeDataSource = [
 		{
@@ -46,7 +47,7 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 		super();
 		this.pageConfig.isDetailPage = false;
 		this.formGroup = formBuilder.group({
-			IDBranch: [this.env.selectedBranch],
+			IDBranch: [],
 			Id: new FormControl({ value: '', disabled: true }),
 			Code: [''],
 			Name: [''],
@@ -64,9 +65,25 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 		});
 	}
 
+	preLoadData(event?: any): void {
+		this.branchList = [...this.env.branchList];
+		
+		super.preLoadData(event);
+	}
 	loadData(event = null) {
 		this.generateFinancialYears();
-		super.loadedData(event);
+		this.loadedData(event);
+	}
+	loadedData(event?: any, ignoredFromGroup?: boolean): void {
+		super.loadedData(event, ignoredFromGroup);
+		this.getNearestCompany(this.env.selectedBranch);
+		let financialYear = this.formGroup.get('FinancialYear').value;
+		let branch = this.env.branchList.find((d) => d.Id == this.formGroup.get('IDBranch').value);
+		if(branch){
+			this.formGroup.get('Name').setValue(financialYear + ' - ' + branch.Name);
+			this.formGroup.get('Name').markAsDirty();
+		}
+
 	}
 	generateFinancialYears() {
 		const currentDate = new Date();
@@ -121,8 +138,11 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 		this.formGroup.get('Code').setValue(financialYear);
 		this.formGroup.get('Code').markAsDirty();
 		//set Name
-		this.formGroup.get('Name').setValue(financialYear);
-		this.formGroup.get('Name').markAsDirty();
+		let branch = this.env.branchList.find((d) => d.Id == this.formGroup.get('IDBranch').value);
+		if(branch){
+			this.formGroup.get('Name').setValue(financialYear + ' - ' + branch.Name);
+			this.formGroup.get('Name').markAsDirty();
+		}
 	}
 	changeFinancialYearFirstDate() {
 		this.formGroup.get('FinancialYearFirstDate').markAsDirty();
@@ -193,5 +213,22 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 
 	async closeModal() {
 		await this.modalController.dismiss();
+	}
+	selectedCompanyBranch;
+	getNearestCompany(IDBranch) {
+		let currentBranch = this.env.branchList.find((d) => d.Id == IDBranch);
+		if (currentBranch) {
+			if (currentBranch.Type == 'Company') {
+				this.selectedCompanyBranch = currentBranch.Id;
+				this.formGroup.get('IDBranch').setValue(currentBranch.Id);
+				this.formGroup.get('IDBranch').markAsDirty();
+				return true;
+			} else {
+				let parentBranch: any = this.env.branchList.find((d) => d.Id == currentBranch.IDParent);
+				if (this.getNearestCompany(parentBranch.Id)) {
+					return true;
+				}
+			}
+		}
 	}
 }
