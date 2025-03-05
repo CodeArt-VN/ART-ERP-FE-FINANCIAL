@@ -67,7 +67,7 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 
 	preLoadData(event?: any): void {
 		this.branchList = [...this.env.branchList];
-		
+
 		super.preLoadData(event);
 	}
 	loadData(event = null) {
@@ -79,11 +79,10 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 		this.getNearestCompany(this.env.selectedBranch);
 		let financialYear = this.formGroup.get('FinancialYear').value;
 		let branch = this.env.branchList.find((d) => d.Id == this.formGroup.get('IDBranch').value);
-		if(branch){
+		if (branch) {
 			this.formGroup.get('Name').setValue(financialYear + ' - ' + branch.Name);
 			this.formGroup.get('Name').markAsDirty();
 		}
-
 	}
 	generateFinancialYears() {
 		const currentDate = new Date();
@@ -139,7 +138,7 @@ export class PostingPeriodCategoryModalPage extends PageBase {
 		this.formGroup.get('Code').markAsDirty();
 		//set Name
 		let branch = this.env.branchList.find((d) => d.Id == this.formGroup.get('IDBranch').value);
-		if(branch){
+		if (branch) {
 			this.formGroup.get('Name').setValue(financialYear + ' - ' + branch.Name);
 			this.formGroup.get('Name').markAsDirty();
 		}

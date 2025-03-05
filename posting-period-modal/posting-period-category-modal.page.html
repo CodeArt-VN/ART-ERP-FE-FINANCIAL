@@ -11,7 +11,6 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content appScrollbarTheme class="ion-padding" fullscreen>
-
 	<form [formGroup]="formGroup">
 		<ion-grid fixed>
 			<ion-row>
@@ -21,9 +20,12 @@
 					id:'IDBranch',label:'Company',type:'ng-select-branch',
 					dataSource:branchList,bindLabel:'Name',bindValue:'Id', placeholder:'Search',
 					form:formGroup}"
-							></app-form-control>
-					<app-form-control (change)="changeFinancialYear()"
-					 [field]="{id:'FinancialYear', label: 'Fiscal year', type : 'ng-select',bindValue:'Code',bindLabel:'Name',dataSource:financialYearList, form : formGroup }"> </app-form-control>
+					></app-form-control>
+					<app-form-control
+						(change)="changeFinancialYear()"
+						[field]="{id:'FinancialYear', label: 'Fiscal year', type : 'ng-select',bindValue:'Code',bindLabel:'Name',dataSource:financialYearList, form : formGroup }"
+					>
+					</app-form-control>
 
 					<!-- <div class="c-control">
 						<label class="c-label"> {{'Fiscal year' | translate}} </label>
