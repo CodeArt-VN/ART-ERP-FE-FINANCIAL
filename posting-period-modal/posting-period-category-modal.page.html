@@ -27,12 +27,6 @@
 					>
 					</app-form-control>
 
-					<!-- <div class="c-control">
-						<label class="c-label"> {{'Fiscal year' | translate}} </label>
-						<select class="c-input c-dropdown" formControlName="FinancialYear" (change)="changeFinancialYear()">
-							<option *ngFor="let t of financialYearList" [value]="t.Code">{{t.Name}}</option>
-						</select>
-					</div> -->
 					<div class="c-control">
 						<label class="c-label"> {{'Start of Fiscal Year' | translate}} </label>
 						<input
@@ -45,11 +39,6 @@
 						/>
 					</div>
 
-					<!-- <app-form-control
-          [field]="{id:'FinancialYearFirstDate', label: 'Start of Fiscal Year', type : 'date', placeholder: 'yyyy-MM-dd', form : formGroup }" (change)="changeFinancialYearFirstDate()"
-        >
-        </app-form-control> -->
-
 					<app-form-control [field]="{id:'Code', label: 'Period code', type : 'text', form : formGroup }"> </app-form-control>
 
 					<app-form-control [field]="{id:'Name', label: 'Period name', type : 'text', form : formGroup }"> </app-form-control>
@@ -60,7 +49,7 @@
 					>
 					</app-form-control>
 
-					<app-form-control [field]="{id:'NumberOfPeriods', label: 'No. of period', type : 'span-number', form : formGroup }"> </app-form-control>	
+					<app-form-control [field]="{id:'NumberOfPeriods', label: 'No. of period', type : 'span-number', form : formGroup }"> </app-form-control>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
@@ -68,16 +57,11 @@
 </ion-content>
 <ion-footer collapse="fade">
 	<ion-toolbar>
-		<div slot="start">
-        </div>
-		
+		<div slot="start"></div>
+
 		<div slot="end">
-			<ion-button [strong]="true" *ngIf="pageConfig.canAdd" (click)="saveChange()" [disabled]="!formGroup.valid">
-				{{'Add' | translate}}
-			</ion-button>
-            <ion-button fill="outline" color="warning" (click)="closeModal()" >
-                {{'Cancel' | translate}}
-            </ion-button>
-        </div>
+			<ion-button [strong]="true" *ngIf="pageConfig.canAdd" (click)="saveChange()" [disabled]="!formGroup.valid"> {{'Add' | translate}} </ion-button>
+			<ion-button fill="outline" color="warning" (click)="closeModal()"> {{'Cancel' | translate}} </ion-button>
+		</div>
 	</ion-toolbar>
 </ion-footer>
