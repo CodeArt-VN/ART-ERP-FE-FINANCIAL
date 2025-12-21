@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header collapse="fade">
 	<ion-toolbar>
 		<ion-buttons slot="start" class="ion-hide-sm-down_">
 			<ion-button color="dark" class="ion-hide-sm-down"> {{'Posting period category' | translate}} </ion-button>
@@ -10,7 +10,7 @@
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
-<ion-content appScrollbarTheme class="ion-padding" fullscreen>
+<ion-content appScrollbarTheme class="ion-padding">
 	<form [formGroup]="formGroup">
 		<ion-grid fixed>
 			<ion-row>
@@ -60,14 +60,24 @@
 					>
 					</app-form-control>
 
-					<app-form-control [field]="{id:'NumberOfPeriods', label: 'No. of period', type : 'span-number', form : formGroup }"> </app-form-control>
-
-					<div class="c-control ion-text-right">
-						<ion-button *ngIf="pageConfig.canAdd" (click)="saveChange()" [disabled]="!formGroup.valid">{{'Add' | translate}}</ion-button>
-						<ion-button (click)="closeModal()" color="warning">{{'Cancel' | translate}}</ion-button>
-					</div>
+					<app-form-control [field]="{id:'NumberOfPeriods', label: 'No. of period', type : 'span-number', form : formGroup }"> </app-form-control>	
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</form>
 </ion-content>
+<ion-footer collapse="fade">
+	<ion-toolbar>
+		<div slot="start">
+        </div>
+		
+		<div slot="end">
+			<ion-button [strong]="true" *ngIf="pageConfig.canAdd" (click)="saveChange()" [disabled]="!formGroup.valid">
+				{{'Add' | translate}}
+			</ion-button>
+            <ion-button fill="outline" color="warning" (click)="closeModal()" >
+                {{'Cancel' | translate}}
+            </ion-button>
+        </div>
+	</ion-toolbar>
+</ion-footer>
