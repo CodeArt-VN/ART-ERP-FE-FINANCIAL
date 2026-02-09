@@ -55,22 +55,19 @@
 							<option [disabled]="t.flag" *ngFor="let t of glList" [value]="t.Id">{{t.Name}}</option>
 						</select>
 					</div>
-
-					<div class="c-control">
-						<label class="c-label" for="IDBranch"
-							>{{'Belonged to unit' | translate}}
-							<span
-								*ngIf="!formGroup.controls.IDBranch.valid && !formGroup.controls.IDBranch.pending && (formGroup.controls.IDBranch.dirty || submitAttempt)"
-								ion-text
-								color="danger"
-								>(*)</span
-							>
-						</label>
-
-						<select class="c-input c-dropdown" formControlName="IDBranch">
-							<option *ngFor="let t of env.branchList" [value]="t.Id">{{t.Name}}</option>
-						</select>
-					</div>
+					<app-form-control
+						[field]="{
+							id:'IDBranch',
+							label:'Belonged to unit',
+							type:'ng-select-branch',
+							dataSource: env.branchList,
+							bindLabel:'Name',
+							bindValue:'Id',
+							form: formGroup,
+							virtualScroll: true,
+							placeholder:'Search...'
+						}"
+					></app-form-control>
 				</ion-col>
 				<ion-col size="12" size-sm="12" size-md="6">
 					<div class="c-control">
